@@ -1,5 +1,5 @@
 # arduino_nus_host
-An Arduino host example for my multilink NUS central role on nrf51. The following commands simplify NUS central role management from an enternal Arduino board. The project is intended to be composed by an Arduino board connected to an nrf51 module, flashed with my multilink NUS central software, through UART interface. 
+An Arduino host example for my multilink NUS central role on nrf51. The following commands simplify NUS central role management from an enternal Arduino board. The project is intended to be composed by an Arduino board connected to an nrf51 module, flashed with my **multilink NUS central** software (https://github.com/marcorussi/nrf51_multi_nus_central), through UART interface. 
 
 **Arduino UART TX and RX pins are respectively 9 and 8.** See README file of multilink NUS central for nrf51 UART pins.
 
