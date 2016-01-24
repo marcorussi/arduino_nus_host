@@ -132,8 +132,13 @@ void rx_and_parse_cmd(String uart_buffer)
   char cmd_string[20];
 
     /* parse received command */
+    if(uart_buffer.startsWith("AT"))
+    {
+      mySerial.print("AT?.");
+      while(true != ble_get_resp());
+    }
     /* CONN:x */
-    if(uart_buffer.startsWith("CONN:"))
+    else if(uart_buffer.startsWith("CONN:"))
     {
       /* get required connection index */
       int pos = uart_buffer.indexOf(':');
@@ -228,6 +233,7 @@ void rx_and_parse_cmd(String uart_buffer)
     else if(uart_buffer.startsWith("AUTO"))
     {
       mySerial.print("AT+AUTO");
+      while(true != ble_get_resp());
 
       /* data mode enabled */
       data_mode = true;
@@ -318,14 +324,7 @@ boolean ble_get_resp(void)
     /* consider length greater than 1 only */
     if(resp_length > 1)
     {
-      if (ble_resp_buffer.startsWith("CHE")) 
-      {
-        /* CHE received */
-        /* valid response */
-        success = true;
-        Serial.println("che");// TO REMOVE
-      }
-      else if (ble_resp_buffer.startsWith("WAIT")) 
+      if (ble_resp_buffer.startsWith("WAIT")) 
       {
         /* WAIT received */
         /* consider as not valid in order to wait the next result response */
